@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffb3d9 0%, #ff99cc 25%, #ffccf2 50%, #ffc2e6 75%, #ff80d4 100%);
+            background-size: 400% 400%;
+            animation: dreamyGradient 12s ease infinite;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes dreamyGradient {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .title {
+            color: #ff1a8c;
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 3px 3px 6px rgba(255, 105, 180, 0.4);
+            animation: gentleBounce 3s ease-in-out infinite;
+        }
+
+        @keyframes gentleBounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .pixel-container {
+            display: grid;
+            grid-template-columns: repeat(21, 20px);
+            grid-template-rows: repeat(7, 20px);
+            gap: 4px;
+            margin: 2rem 0;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 12px 40px rgba(255, 105, 180, 0.3);
+            border: 2px solid rgba(255, 182, 193, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pixel {
+            width: 20px;
+            height: 20px;
+            background: transparent;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .pixel.active {
+            background: linear-gradient(135deg, #ff69b4, #ffb6c1, #ffc0cb, #ffd1dc);
+            box-shadow: 
+                0 0 20px rgba(255, 105, 180, 0.8),
+                0 0 40px rgba(255, 182, 193, 0.6),
+                inset 0 2px 4px rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            transform: scale(0);
+            animation: pixelBloom 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes pixelBloom {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(45deg);
+                filter: hue-rotate(0deg) brightness(1);
+            }
+            60% {
+                opacity: 0.9;
+                transform: scale(1.2) rotate(15deg);
+                filter: hue-rotate(20deg) brightness(1.2);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+                filter: hue-rotate(0deg) brightness(1);
+            }
+        }
+
+        .pixel.active:hover {
+            transform: scale(1.3);
+            box-shadow: 
+                0 0 30px rgba(255, 105, 180, 1),
+                0 0 60px rgba(255, 182, 193, 0.8);
+            background: linear-gradient(135deg, #ff1493, #ff69b4, #ffb6c1, #ffc0cb);
+        }
+
+        .message {
+            color: #ff1a8c;
+            font-size: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            text-shadow: 2px 2px 8px rgba(255, 105, 180, 0.5);
+            animation: fadeInUp 4s ease-in-out;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 25px;
+            animation: floatUp 10s linear infinite;
+        }
+
+        .heart:nth-child(odd) { color: rgba(255, 182, 193, 0.8); }
+        .heart:nth-child(even) { color: rgba(255, 105, 180, 0.7); }
+        .heart:nth-child(3n) { color: rgba(255, 192, 203, 0.9); }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            10% {
+                transform: translateY(90vh) scale(1) rotate(180deg);
+                opacity: 1;
+            }
+            90% {
+                transform: translateY(-10vh) scale(1.2) rotate(340deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-20vh) scale(0) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .subtitle {
+            color: #d1477a;
+            font-size: 1.3rem;
+            text-align: center;
+            margin-top: 1rem;
+            font-style: italic;
+            text-shadow: 1px 1px 4px rgba(255, 105, 180, 0.4);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .instruction {
+            color: #ff69b4;
+            font-size: 1rem;
+            text-align: center;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ff69b4;
+            font-size: 0.9rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 182, 193, 0.5);
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(255, 105, 180, 0.3);
+        }
+
+        @keyframes sparkle {
+            0%, 100% { 
+                filter: brightness(1) saturate(1) hue-rotate(0deg);
+                transform: scale(1);
+            }
+            25% {
+                filter: brightness(1.2) saturate(1.3) hue-rotate(10deg);
+                transform: scale(1.03);
+            }
+            50% { 
+                filter: brightness(1.4) saturate(1.6) hue-rotate(20deg);
+                transform: scale(1.06);
+            }
+            75% {
+                filter: brightness(1.2) saturate(1.3) hue-rotate(10deg);
+                transform: scale(1.03);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pixel-container {
+                grid-template-columns: repeat(21, 15px);
+                grid-template-rows: repeat(7, 15px);
+                gap: 3px;
+                padding: 2rem;
+            }
+            
+            .pixel {
+                width: 15px;
+                height: 15px;
+            }
+            
+            .title {
+                font-size: 2.2rem;
+            }
+            
+            .message {
+                font-size: 1.5rem;
+            }
+
+            .footer {
+                bottom: 10px;
+                font-size: 0.8rem;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <h1 class="title">💖 For My One & Only 💖</h1>
+    
+    <div class="pixel-container" id="pixelContainer"></div>
+    
+    <div class="message">
+        ✨ You're My Universe & Beyond ✨
+    </div>
+    
+    <div class="subtitle">
+        "Baby, you're not just my sunshine...<br>
+        You're my whole damn galaxy 💫<br>
+        Every heartbeat whispers your name"
+    </div>
+    
+    <div class="instruction">
+        💫 Click anywhere to see more magic, gorgeous 💫
+    </div>
+
+    <div class="footer">
+        💕 ทำโดย zToonSiamz | Kernelz 💕
+    </div>
+
+    <script>
+        // Cleaner and more readable LOVE pattern
+        const lovePattern = [
+            // L     O     V     E
+            [1,0,0,0,1,1,1,0,0,1,0,0,0,1,0,0,1,1,1,1,1],
+            [1,0,0,1,0,0,0,1,0,1,0,0,0,1,0,0,1,0,0,0,0],
+            [1,0,0,1,0,0,0,1,0,1,0,0,0,1,0,0,1,1,1,1,0],
+            [1,0,0,1,0,0,0,1,0,1,0,0,0,1,0,0,1,0,0,0,0],
+            [1,0,0,1,0,0,0,1,0,0,1,0,1,0,0,0,1,0,0,0,0],
+            [1,0,0,1,0,0,0,1,0,0,1,0,1,0,0,0,1,0,0,0,0],
+            [1,1,1,0,1,1,1,0,0,0,0,1,0,0,0,0,1,1,1,1,1]
+        ];
+
+        let animationInterval;
+        let pixels = [];
+
+        function createPixelGrid() {
+            const container = document.getElementById('pixelContainer');
+            container.innerHTML = '';
+            pixels = [];
+            
+            let activePixelIndex = 0;
+            
+            lovePattern.forEach((row, rowIndex) => {
+                row.forEach((pixel, colIndex) => {
+                    const pixelDiv = document.createElement('div');
+                    pixelDiv.className = 'pixel';
+                    container.appendChild(pixelDiv);
+                    
+                    if (pixel === 1) {
+                        pixels.push({
+                            element: pixelDiv,
+                            index: activePixelIndex,
+                            row: rowIndex,
+                            col: colIndex
+                        });
+                        activePixelIndex++;
+                    }
+                });
+            });
+            
+            animatePixels();
+        }
+
+        function animatePixels() {
+            pixels.forEach((pixelData, index) => {
+                setTimeout(() => {
+                    pixelData.element.classList.add('active');
+                    
+                    // Add sparkle effect
+                    setTimeout(() => {
+                        pixelData.element.style.animation += ', sparkle 3s ease-in-out infinite';
+                    }, 800);
+                    
+                }, index * 100); // Smooth sequential animation
+            });
+        }
+
+        function createFloatingHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartSymbols = ['💕', '❤️', '💖', '💗', '💝', '💘', '💞', '💓', '🌸', '💐'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 4 + 8) + 's';
+                heart.style.fontSize = (Math.random() * 15 + 20) + 'px';
+                heartsContainer.appendChild(heart);
+                
+                setTimeout(() => {
+                    if (heart.parentNode) {
+                        heart.parentNode.removeChild(heart);
+                    }
+                }, 12000);
+            }, 500);
+        }
+
+        function restartAnimation() {
+            pixels.forEach(pixelData => {
+                pixelData.element.classList.remove('active');
+                pixelData.element.style.animation = '';
+            });
+            
+            setTimeout(() => {
+                animatePixels();
+            }, 300);
+        }
+
+        // Auto restart every 12 seconds
+        function startAutoRestart() {
+            if (animationInterval) clearInterval(animationInterval);
+            animationInterval = setInterval(() => {
+                restartAnimation();
+            }, 12000);
+        }
+
+        // Event listeners
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('pixel')) {
+                e.target.style.transform = 'scale(1.5) rotate(180deg)';
+                e.target.style.filter = 'brightness(1.5) saturate(2)';
+                setTimeout(() => {
+                    e.target.style.transform = '';
+                    e.target.style.filter = '';
+                }, 300);
+            } else {
+                restartAnimation();
+            }
+        });
+
+        // Initialize
+        createPixelGrid();
+        createFloatingHearts();
+        startAutoRestart();
+    </script>
+</body>
+</html>
